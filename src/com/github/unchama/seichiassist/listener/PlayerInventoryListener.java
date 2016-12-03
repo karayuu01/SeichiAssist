@@ -1683,6 +1683,28 @@ public class PlayerInventoryListener implements Listener {
 			}
 		}
 	}
+/*
+	//共有マインスタックメニュー
+	@EventHandler
+	public void onPlayerClickMultiMineStackMenuEvent(InventoryClickEvent event){
+		//枠外のクリック処理なら終了
+		if(event.getClickedInventory() == null){
+			return;
+		}
+
+		ItemStack itemstackcurrent = event.getCurrentItem();
+		InventoryView view = event.getView();
+		HumanEntity he = view.getPlayer();
+		//インベントリを開けたのがプレイヤーじゃないとき終了
+		if(!he.getType().equals(EntityType.PLAYER)){
+			return;
+		}
+
+		Inventory topinventry = view.getTopInventory();
+		//インベントリが存在しないとき終了
+	}
+	*/
+
 	//マインスタックメニュー
 	@EventHandler
 	public void onPlayerClickMineStackMenuEvent(InventoryClickEvent event){

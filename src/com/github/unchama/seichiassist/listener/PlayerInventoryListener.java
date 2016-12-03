@@ -418,7 +418,7 @@ public class PlayerInventoryListener implements Listener {
 					//ホームをセット
 					int z = Integer.parseInt( itemmeta.getDisplayName().substring(15, 16) ) - 1;	//サブホームボタンの番号
 					playerdata.SetSubHome(player.getLocation(), z);
-					
+
 					//mysqlにも書き込んどく
 					/*別スレッド処理PlayerDataSaveTaskRunnableに移動
 					if(!sql.UpDataSubHome(playerdata.SubHomeToString())){
@@ -438,7 +438,7 @@ public class PlayerInventoryListener implements Listener {
 				// homeコマンド実行
 				player.closeInventory();
 				player.playSound(player.getLocation(), Sound.BLOCK_STONE_BUTTON_CLICK_ON, 1, 1);
-				
+
 				ItemMeta itemmeta = itemstackcurrent.getItemMeta();
 				if(itemmeta.getDisplayName().contains("サブホームポイント")){//ホームボタンかサブホームボタンか判定
 					//サブホームに移動
@@ -458,9 +458,9 @@ public class PlayerInventoryListener implements Listener {
 				}else {
 					player.chat("/home");
 				}
-				
-				
-				
+
+
+
 			}
 
 			else if(itemstackcurrent.getType().equals(Material.WORKBENCH)){
@@ -634,7 +634,7 @@ public class PlayerInventoryListener implements Listener {
 				//インベントリを開く
 				player.openInventory(SeichiAssist.plugin.getServer().createInventory(null, 9*4 ,ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "交換したい景品を入れてください"));
 			}
-			
+
 		}
 	}
 	//スキルメニューの処理
@@ -1453,6 +1453,28 @@ public class PlayerInventoryListener implements Listener {
 			}
 		}
 	}
+/*
+	//共有マインスタックメニュー
+	@EventHandler
+	public void onPlayerClickMultiMineStackMenuEvent(InventoryClickEvent event){
+		//枠外のクリック処理なら終了
+		if(event.getClickedInventory() == null){
+			return;
+		}
+
+		ItemStack itemstackcurrent = event.getCurrentItem();
+		InventoryView view = event.getView();
+		HumanEntity he = view.getPlayer();
+		//インベントリを開けたのがプレイヤーじゃないとき終了
+		if(!he.getType().equals(EntityType.PLAYER)){
+			return;
+		}
+
+		Inventory topinventry = view.getTopInventory();
+		//インベントリが存在しないとき終了
+	}
+	*/
+
 	//マインスタックメニュー
 	@EventHandler
 	public void onPlayerClickMineStackMenuEvent(InventoryClickEvent event){

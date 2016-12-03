@@ -203,6 +203,26 @@ public class MenuInventoryData {
 		itemstack.setItemMeta(itemmeta);
 		inventory.setItem(24,itemstack);
 
+		/*共用MineStackを開く
+		//やってることは他と同じ。岩盤クリックで開けるように
+		itemstack = new ItemStack(Material.BEDROCK,1);
+		itemmeta = Bukkit.getItemFactory().getItemMeta(Material.BOOK);
+		itemmeta.setDisplayName(ChatColor.YELLOW + "" + ChatColor.UNDERLINE + "" + ChatColor.BOLD + "共同MineStack機能");
+		lore.clear();
+		lore.addAll(Arrays.asList(ChatColor.RESET + "" + ChatColor.GREEN + "全プレイヤー共同の"
+				 , ChatColor.RESET + "" + ChatColor.GREEN + "" + "MineStackを開きます"
+				 , ChatColor.RESET + "" + ChatColor.DARK_RED + ChatColor.BOLD + "" +"取り過ぎ注意！"
+				 ));
+		if(playerdata.level < SeichiAssist.config.getMineStacklevel(1)){
+			lore.add(ChatColor.RESET + "" + ChatColor.DARK_RED + "" + ChatColor.UNDERLINE + "整地レベルが" + SeichiAssist.config.getMineStacklevel(1) + "以上必要です");
+		}else{
+			lore.add(ChatColor.RESET + "" + ChatColor.DARK_GREEN + "" + ChatColor.UNDERLINE + "クリックで開く");
+		}
+		itemmeta.setLore(lore);
+		itemstack.setItemMeta(itemmeta);
+		inventory.setItem(16,itemstack);
+
+		*/
 		/*
 		 * ここまでadd.loreに変更済み
 		 * 以下ボタンにadd.lore使う場合は追加行より上をすべてadd.loreに変更しないとエラー吐きます
@@ -646,7 +666,7 @@ public class MenuInventoryData {
 			itemmeta.setLore(lore);
 			itemstack.setItemMeta(itemmeta);
 			inventory.setItem(29+x,itemstack);
-			
+
 			//サブホーム設定ボタン
 			itemstack = new ItemStack(Material.BED,1);
 			itemmeta = Bukkit.getItemFactory().getItemMeta(Material.BED);
@@ -658,8 +678,8 @@ public class MenuInventoryData {
 					);
 			itemmeta.setLore(lore);
 			itemstack.setItemMeta(itemmeta);
-			inventory.setItem(20+x,itemstack);		
-			
+			inventory.setItem(20+x,itemstack);
+
 		}
 
 		return inventory;

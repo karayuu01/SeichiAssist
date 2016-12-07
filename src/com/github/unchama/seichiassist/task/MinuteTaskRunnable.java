@@ -155,12 +155,6 @@ public class MinuteTaskRunnable extends BukkitRunnable{
 				}
 			}
 
-			//破壊数表示
-			player.sendMessage("----------------------------詳細-----------------------------");
-			player.sendMessage("あなたの1分間の破壊数は" + ChatColor.AQUA + (int) playerdata.calcMineBlock(player) + "です。");
-			player.sendMessage("あなたの1秒間の平均破壊数は" + ChatColor.AQUA + (int) playerdata.calcMineBlock(player)/60 + "です。");
-			player.sendMessage("-------------------------------------------------------------");
-
 			//プレイヤーデータを更新
 			playerdata.lastminespeedlv = minespeedlv;
 

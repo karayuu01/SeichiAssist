@@ -203,6 +203,18 @@ public class MenuInventoryData {
 		itemstack.setItemMeta(itemmeta);
 		inventory.setItem(24,itemstack);
 
+
+		//便利ツールボタン
+		itemstack = new ItemStack(Material.ANVIL,1);
+		itemmeta = Bukkit.getItemFactory().getItemMeta(Material.ANVIL);
+		itemmeta.setDisplayName(ChatColor.YELLOW + "" + ChatColor.UNDERLINE + "便利なツールBOX");
+		//今のところレベル制限なし。レベル制限を加えるならここに記入
+		lore = Arrays.asList(ChatColor.RESET + "" + ChatColor.GREEN + "竈・エンチャントテーブル・金床・醸造台を"
+				,ChatColor.RESET + "" + ChatColor.GREEN + "開けます"
+				,ChatColor.RESET + "" + ChatColor.DARK_RED + "" + ChatColor.UNDERLINE + "クリックで開く");
+		itemmeta.setLore(lore);
+		itemstack.setItemMeta(itemmeta);
+		inventory.setItem(15, itemstack);
 		/*共用MineStackを開く
 		//やってることは他と同じ。岩盤クリックで開けるように
 		itemstack = new ItemStack(Material.BEDROCK,1);
@@ -1013,6 +1025,28 @@ public class MenuInventoryData {
 
 		return inventory;
 	}
+
+	//検証中重大なバグが発生したのでコメントアウト
+	/*//便利ツールBOXメニュー
+	public static Inventory getToolBoxMenuData(Player p){
+
+		Inventory inventory = Bukkit.getServer().createInventory(null,1*9,ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "便利ツールBOX");
+		ItemStack itemstack;
+		ItemMeta itemmeta;
+		List<String> lore = new ArrayList<String>();
+
+		// 1ページ目を開く
+		//金床を開くボタン
+		itemstack = new ItemStack(Material.ANVIL,1);
+		itemmeta = Bukkit.getItemFactory().getItemMeta(Material.ANVIL);
+		itemmeta.setDisplayName(ChatColor.YELLOW + "" + ChatColor.UNDERLINE + "" + ChatColor.BOLD + "金床を開く");
+		lore = Arrays.asList(ChatColor.RESET + "" + ChatColor.DARK_RED + "" + ChatColor.UNDERLINE + "クリックで開く");
+		itemmeta.setLore(lore);
+		inventory.setItem(0,itemstack);
+
+		return inventory;
+	}*/
+
 	//アクティブスキルメニュー
 	public static Inventory getActiveSkillMenuData(Player p){
 		//プレイヤーを取得

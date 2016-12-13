@@ -16,13 +16,13 @@ import com.github.unchama.seichiassist.Config;
 import com.github.unchama.seichiassist.SeichiAssist;
 import com.github.unchama.seichiassist.data.EffectData;
 import com.github.unchama.seichiassist.data.PlayerData;
+import com.github.unchama.seichiassist.data.RankData;
 import com.github.unchama.seichiassist.util.Util;
 
-public class MinuteTaskRunnable extends BukkitRunnable{
+public class MinuteTaskRunnable<Rankdata> extends BukkitRunnable{
 	private SeichiAssist plugin = SeichiAssist.plugin;
 	private HashMap<UUID, PlayerData> playermap = SeichiAssist.playermap;
 	private Config config = SeichiAssist.config;
-
 	//newインスタンスが立ち上がる際に変数を初期化したり代入したりする処理
 	public MinuteTaskRunnable() {
 
@@ -77,7 +77,7 @@ public class MinuteTaskRunnable extends BukkitRunnable{
 
 			//プレイヤー名を取得
 			String name = Util.getName(player);
-			//総整地量を更新(返り血で重み分け済みの1分間のブロック破壊量が返ってくる)
+			//総整地量を更新(返り値で重み分け済みの1分間のブロック破壊量が返ってくる)
 			int increase = playerdata.calcMineBlock(player);
 			//Levelを設定(必ず総整地量更新後に実施！)
 			playerdata.updataLevel(player);
@@ -154,6 +154,20 @@ public class MinuteTaskRunnable extends BukkitRunnable{
 					player.sendMessage("-------------------------------------------------------------");
 				}
 			}
+			//テスト追加・順位表示
+			if(playerdata.beforerank != playerdata.afterrank){
+				player.sendMessage(ChatColor.WHITE + "あなたの現在の順位は" + ChatColor.RESET + "" + ChatColor.AQUA + playerdata.afterrank + ChatColor.RESET + "" + ChatColor.WHITE + "位");
+				//ランクの差
+				if(playerdata.afterrank > 1){
+					RankData rankdata = SeichiAssist.ranklist.get(playerdata.afterrank - 2);
+					player.sendMessage(ChatColor.RESET + "" +  ChatColor.AQUA + (playerdata.afterrank-1) + "位("+ rankdata.name +")との差：" + (rankdata.totalbreaknum - playerdata.totalbreaknum));
+				}
+
+
+			}
+			//計算
+			playerdata.afterrank = playerdata.beforerank;
+			playerdata.afterrank = playerdata.calcPlayerRank(player);
 
 			//プレイヤーデータを更新
 			playerdata.lastminespeedlv = minespeedlv;

@@ -650,6 +650,14 @@ public class PlayerInventoryListener implements Listener {
 				player.openInventory(SeichiAssist.plugin.getServer().createInventory(null, 9*4 ,ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "交換したい景品を入れてください"));
 			}
 
+			/*else if(itemstackcurrent.getType().equals(Material.ANVIL)){
+				//便利BOXを開く
+				//開く音を再生
+				player.playSound(player.getLocation(), Sound.BLOCK_CHEST_OPEN, 1, (float) 0.5);
+				//インベントリを開く
+				player.openInventory(MenuInventoryData.getToolBoxMenuData(player));
+			}*/
+
 		}
 	}
 
@@ -863,7 +871,45 @@ public class PlayerInventoryListener implements Listener {
 	}
 
 
+	/*//便利BOXの処理
+	@EventHandler
+	public void onPlayerClickToolBoxSelectEvent(InventoryClickEvent e){
+		//枠外のクリック処理なら終了
+		if(e.getClickedInventory() == null){
+			return;
+		}
 
+		InventoryView view = e.getView();
+		HumanEntity he = view.getPlayer();
+
+		//インベントリを開けたのがプレイヤーでないとき終了
+		if(!he.getType().equals(EntityType.PLAYER)){
+			return;
+		}
+		//インベントリサイズが9でないとき終了
+		Inventory topinventory = view.getTopInventory();
+		if(topinventory .getSize() != 9){
+			return;
+		}
+
+		Player player = (Player)he;
+
+		//インベントリ名が以下の時の処理
+		if(topinventory.getTitle().equals(ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "整地スキル切り替え")){
+
+			//プレイヤーインベントリのクリックの場合終了
+			if(e.getClickedInventory().getType().equals(InventoryType.PLAYER)){
+				return;
+			}
+
+			//アイテム名が以下の時の処理
+			if(topinventory.getTitle().equals(ChatColor.YELLOW + "" + ChatColor.UNDERLINE + "" + ChatColor.BOLD + "金床を開く")){
+				Inventory i = Bukkit.createInventory(player,InventoryType.ANVIL);
+				player.openInventory(i);
+		}
+	}
+
+}*/
 
 
 

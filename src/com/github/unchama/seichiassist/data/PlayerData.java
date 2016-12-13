@@ -52,6 +52,9 @@ public class PlayerData {
 	public Inventory inventory;
 	//ワールドガード保護自動設定用
 	public int rgnum;
+	//順位表示用
+	public int beforerank;
+	public int afterrank;
 
 	//MineStack
 	public MineStack minestack;
